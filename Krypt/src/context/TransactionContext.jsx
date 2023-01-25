@@ -64,12 +64,13 @@ export const TransactionProvider = ({children}) => {
                 params:[{
                     from:currentAccount,
                     to:addressTo,
-                    gas:'0x5205',
+                    gas:'0x0005',
                     value:parsedAmount._hex,
                 }]
             });
 
             const transactionHash = await transactionContract.addToBlockchain(addressTo,parsedAmount,message,keyword);
+            console.log(transactionHash);
             setIsLoading(true);
             await transactionHash.wait();
             setIsLoading(false);
